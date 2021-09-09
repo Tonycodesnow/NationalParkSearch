@@ -15,11 +15,11 @@
     />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
-    <title>Document</title>
+    <title>My City</title>
   </head>
   <body>
     <div class="ui container">
-      
+      <!--Search bar-->
       <div class="ui one column stackable grid">
         <div class="column">
           <div class="ui fluid action input">
@@ -28,12 +28,34 @@
           </div>
         </div>
       </div>
+      <!--Containers Popupaltions and ??-->
       <div class="ui stackable grid">
         <div class="four wide column">
           <div class="ui segment">Content</div>
         </div>
         <div class="twelve wide column">
           <div class="ui segment">Content</div>
+        </div>
+      </div>
+      <!--Container for News-->
+       <div class="ui stackable grid">
+        <div class="one wide column">
+        
+        </div>
+        <div class="fourteen wide column">
+          <div class="ui link cards" id="divNews"></div>
+        </div>
+        <div class="one wide column">
+        
+        </div>
+      </div>
+      <!--Container for News-->
+       <div class="ui stackable grid">
+        <div class="three wide column">
+          <div class="ui segment">Content</div>
+        </div>
+        <div class="thirteen wide column">
+          <div class="ui link cards" id="divNews"></div>
         </div>
       </div>
     </div>
@@ -51,5 +73,18 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAekD3jUuuHxsJt5oCEP_nX7kS0WVhYeDg&libraries=places&callback=initAutocomplete"
+      async
+      defer
+    ></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
