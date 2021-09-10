@@ -22,6 +22,7 @@ function getCityNews(city) {
   const urlNews = `https://newsapi.org/v2/everything?q=${city}&from=${today.format(
     "YYYY-MM-DD"
   )}&sortBy=publishedAt`;
+
   fetch(urlNews, {
     headers: {
       "X-Api-Key": "a75bb4ec9843405194050dbd7e770d3f",
@@ -53,7 +54,7 @@ function showNews(news) {
     for (let n of news) {
       const publishedDate = moment(n.publishedAt);
       const newContent = `
-      <a class="card" href="${n.url}" target="_blank">
+           <a class="card" href="${n.url}" target="_blank">
               <div class="image">
                 <img src="${n.urlToImage}" />
               </div>
@@ -77,15 +78,16 @@ function showNews(news) {
   }
 }
 
-//Show Park closed to the City in the State
+//TODO:Show Park closed to the City in the State
 function showPaks(parks) {
   if (parks) {
-    for (let park of parks) {
-      const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
-      if (dist <= 80) {
-        console.log(cityName + " - " + park.fullName, dist);
-      }
-    }
+    parks.map((park) => {
+      console.log(park);
+      //const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
+      // if (dist <= 80) {
+      //   console.log(cityName + " - " + park.fullName, dist);
+      // }
+    });
   }
 }
 
