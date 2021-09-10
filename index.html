@@ -13,6 +13,12 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <title>My City</title>
@@ -49,14 +55,19 @@
         
         </div>
       </div>
-      <!--Container for News-->
+      <!--Container for National parks-->
        <div class="ui stackable grid">
         <div class="three wide column">
           <div class="ui segment">Content</div>
         </div>
         <div class="thirteen wide column">
-          <div class="ui link cards" id="divNews"></div>
-        </div>
+      
+
+            <div class="ui special cards" id="divParks">
+
+            </div>
+
+          </div>
       </div>
     </div>
 
@@ -86,5 +97,8 @@
       defer
     ></script>
     <script src="./assets/js/script.js"></script>
+    <script>$('.special.cards .image').dimmer({
+      on: 'hover'
+    });</script>
   </body>
 </html>

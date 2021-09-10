@@ -1,4 +1,5 @@
 //Variables
+const parksEl = document.getElementById("divParks");
 const inputCity = document.getElementById("inputCity");
 const buttonSearch = document.getElementById("buttonSearch");
 const divNews = document.getElementById("divNews");
@@ -81,12 +82,38 @@ function showNews(news) {
 //TODO:Show Park closed to the City in the State
 function showPaks(parks) {
   if (parks) {
+    parksEl.innerHTML = ""
     parks.map((park) => {
-      console.log(park);
-      //const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
-      // if (dist <= 80) {
-      //   console.log(cityName + " - " + park.fullName, dist);
-      // }
+      
+      const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
+      if (dist <= 150) {
+        console.log(park.images[0])
+        const newPark = `<div class="card">
+        <div class="blurring dimmable image">
+          <div class="ui dimmer">
+            <div class="content">
+              <div class="center">
+                <div class="ui inverted button">Go to Park Site</div>
+              </div>
+            </div>
+          </div>
+          <img class=“medium ui image” src="${park.images[0].url}">
+        </div>
+        <div class="content">
+          <a class="header">${park.fullName}</a>
+          <div class="meta">
+            <span class="date">${Math.floor(dist)} miles</span>
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+          <i class=“calendar outline icon”></i>
+              ${park.activities[0].name}, ${park.activities[1].name}
+          </a>
+        </div>
+      </div>`
+        parksEl.innerHTML += newPark
+      }
     });
   }
 }
@@ -140,7 +167,7 @@ function initAutocomplete() {
 //Get City Weather Information
 function onCityChanged() {
   var place = autocomplete.getPlace();
-  //   console.log("place from Google API", place.address_components[2].short_name);
+    console.log("place from Google API", place);
   cityLat = place.geometry.location.lat();
   cityLng = place.geometry.location.lng();
   cityName = place.vicinity;
