@@ -44,7 +44,7 @@ function getNationalParks(state) {
     .then((response) => {
       console.log(response);
       //show parks
-      showPaks(response.data);
+      showParks(response.data);
     });
 }
 
@@ -80,7 +80,7 @@ function showNews(news) {
 }
 
 //TODO:Show Park closed to the City in the State
-function showPaks(parks) {
+function showParks(parks) {
   if (parks) {
     parksEl.innerHTML = ""
     parks.map((park) => {
