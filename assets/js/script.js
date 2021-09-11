@@ -97,7 +97,7 @@ function showParks(parks) {
               </div>
             </div>
           </div>
-          <img class=“medium ui image” src="${park.images[0].url}">
+          <img class="medium ui image parkImg" src="${park.images[0].url}">
         </div>
         <div class="content">
           <a class="header">${park.fullName}</a>
@@ -107,7 +107,7 @@ function showParks(parks) {
         </div>
         <div class="extra content">
           <a>
-          <i class=“calendar outline icon”></i>
+          <i class="calendar outline icon"></i>
               ${park.activities[0].name}, ${park.activities[1].name}
           </a>
         </div>
