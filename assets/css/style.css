@@ -1,3 +1,24 @@
  body>.ui.container {
-     margin-top: 3em;
+    margin-top: 3em;
  }
+
+ body {
+     background-color: #CEE5D0;
+ }
+ .ui.header, .ui {
+     color: #5E454B;
+ }
+
+ .ui.items>.item {
+     width: unset;
+     max-width: 85%;
+     flex-direction: row;
+     margin: 10px auto;
+     background-color: #F3F0D7;
+     padding: 0.5em
+ }
+
+ .main-image {
+     max-height: 300px;
+ }
+
