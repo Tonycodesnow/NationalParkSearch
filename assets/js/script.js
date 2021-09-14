@@ -83,7 +83,7 @@ function showParks(parks) {
                 <p>${park.description}</p>
               </div>
               <div class="extra">
-                <span>$${park.entranceFees[0].cost}</span>
+                <span>${park.entranceFees[0].cost === "0.00" ? "Free" : "$" + park.entranceFees[0].cost}</span>
                 <span>${park.activities[0].name}, ${park.activities[1].name}</span>
               </div>
               
