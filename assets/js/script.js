@@ -46,9 +46,10 @@ function showParks(parks) {
 
         //all activities for the park
         let parkActivities = '<span>'
-        for (let i = 0; i < 5; i++) {
-          parkActivities += ` ${park.activities[i].name},`
+        for (let i = 0; i < 5 && i< park.activities.length; i++) {
           console.log(park.activities[i].name)
+          parkActivities += ` ${park.activities[i].name},`
+          
         }
         parkActivities += `</span>`
 
