@@ -34,7 +34,9 @@ function showParks(parks) {
         // all images for the park
         let parkImages = `<div class="ui tiny images">`;
         for (let i = 0; i < park.images.length; i++) {
-          parkImages += `<img class="ui image Mini" src="${park.images[i].url}" loading="lazy">`;
+          parkImages += `<a href="${park.images[i].url}" data-lightbox="${park.fullName}"  data-title="${park.images[i].title}">
+                        <img class="ui image Mini" src="${park.images[i].url}" loading="lazy"/>
+                        </a>`;
         }
         parkImages += `</div>`;
 
