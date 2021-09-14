@@ -33,10 +33,26 @@ function getNationalParks() {
 function showParks(parks) {
   if (parks) {
     parksEl.innerHTML = ""
-    parks.map((park) => {
-           
+    parks.map((park) => {     
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
+
+        // all images for the park
+        let parkImages = `<div class="ui tiny images">`
+        for (let i = 0; i < park.images.length; i++) {
+          parkImages += `<img class="ui image Mini" src="${park.images[i].url}">`
+        }
+        parkImages += `</div>`
+
+        //all activities for the park
+        let parkActivities = '<span>'
+        for (let i = 0; i < 5 && i< park.activities.length; i++) {
+          console.log(park.activities[i].name)
+          parkActivities += ` ${park.activities[i].name},`
+          
+        }
+        parkActivities += `</span>`
+
         const newPark = `
         <div class="ui item">
           <div class="ui large image">
@@ -44,7 +60,7 @@ function showParks(parks) {
           </div>
           <div class="content left aligned">
             <div class="header">${park.fullName} 
-              <div id="favorite">
+              <div id="favorite" class="ui right floated">
                 <i data-name="${park.fullName}" class="bookmark outline icon"></i>
               </div>
             </div>
@@ -56,8 +72,9 @@ function showParks(parks) {
               </div>
               <div class="extra">
                 <span>${park.entranceFees[0].cost === "0.00" ? "Free" : "$" + park.entranceFees[0].cost}</span>
-                <span>${park.activities[0].name}, ${park.activities[1].name}</span>
+                ${parkActivities}
               </div>
+              ${parkImages}
               
           </div>
         </div>
