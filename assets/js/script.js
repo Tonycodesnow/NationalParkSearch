@@ -29,37 +29,6 @@ function getNationalParks() {
     });
 }
 
-//Create function for showNews
-function showNews(news) {
-  divNews.innerHTML = "";
-  if (news) {
-    for (let n of news) {
-      const publishedDate = moment(n.publishedAt);
-      const newContent = `
-           <a class="card" href="${n.url}" target="_blank">
-              <div class="image">
-                <img src="${n.urlToImage}" />
-              </div>
-              <div class="content">
-                <div class="header">${n.title}</div>
-                <div class="description">
-                  ${n.description}
-                </div>
-              </div>
-              <div class="extra content">
-                <span class="right floated">${publishedDate.format(
-                  "MM/DD/YYYY"
-                )}</span>
-                <span>
-                  ${n.author}
-                </span>
-              </div>
-            </a>`;
-      divNews.innerHTML += newContent;
-    }
-  }
-}
-
 //TODO:Show Park closed to the City in the State
 function showParks(parks) {
   if (parks) {
@@ -125,11 +94,6 @@ function distance(lat1, lon1, lat2, lon2, unit) {
   }
 }
 
-//Event Listeners
-//buttonSearch.addEventListener("click", (event) => {
-//  console.log("button Search Click");
-//  getCityNews(cityName);
-//});
 
 //Google Autocomplete API
 let autocomplete;
