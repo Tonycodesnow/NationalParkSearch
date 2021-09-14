@@ -73,6 +73,7 @@ function showParks(parks) {
           <div class="ui large image">
             <img class="main-image" src="${park.images[0].url}">
           </div>
+
           <div class="content left aligned">
             <div class="header">${park.fullName}</div>
               <div class="meta">
@@ -89,7 +90,22 @@ function showParks(parks) {
           </div>
         </div>
 
-`
+
+          <img class="medium ui image parkImg" src="${park.images[0].url}">
+        </div>
+        <div class="content">
+          <a class="header">${park.fullName}</a>
+          <div class="meta">
+            <span class="date">${Math.floor(dist)} miles</span>
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+          <i class="calendar outline icon"></i>
+              ${park.activities[0].name}, ${park.activities[1].name}
+          </a>
+        </div>
+
         parksEl.innerHTML += newPark
     }
     });

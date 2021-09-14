@@ -1,4 +1,5 @@
  body>.ui.container {
+
     margin-top: 3em;
  }
 
@@ -21,4 +22,12 @@
  .main-image {
      max-height: 300px;
  }
+
+     margin-top: 3em;
+ }
+
+.parkImg {
+    overflow: hidden;
+    max-height: 290px;
+}
 
