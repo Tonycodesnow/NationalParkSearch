@@ -9,15 +9,11 @@ let cityState = "";
 let cityLat = 0;
 let cityLng = 0;
 
-//Fucntions
-
-//TODO: Create a function for get Population Information API
-
-//TODO: Create a function for get Weather from the City or Coordinates
+//Functions
 
 //Get News About the City
 
-//TODO: Get National Park List
+//Get National Park List
 function getNationalParks() {
   const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=x6sAYVvGxVvGZ5T60O2OnqEGdJnsiGuyJBeye1QX`;
   fetch(url)
@@ -28,14 +24,28 @@ function getNationalParks() {
     });
 }
 
-//TODO:Show Park closed to the City in the State
+//Show Park closed to the City in the State
 function showParks(parks) {
   if (parks) {
     parksEl.innerHTML = "";
     parks.map((park) => {
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
-        console.log(park);
+        // all images for the park
+        let parkImages = `<div class="ui tiny images">`;
+        for (let i = 0; i < park.images.length; i++) {
+          parkImages += `<img class="ui image Mini" src="${park.images[i].url}" loading="lazy">`;
+        }
+        parkImages += `</div>`;
+
+        //all activities for the park
+        let parkActivities = "<span>";
+        for (let i = 0; i < 5 && i < park.activities.length; i++) {
+          console.log(park.activities[i].name);
+          parkActivities += ` ${park.activities[i].name},`;
+        }
+        parkActivities += `</span>`;
+
         const newPark = `
         <div class="ui item">
           <div class="ui large image">
@@ -131,7 +141,7 @@ function onCityChanged() {
   getNationalParks();
 }
 
-distanceEl.addEventListener("keypress", () => {
+distanceEl.addEventListener("blur", () => {
   if (distanceEl.value && distanceEl.value != "0") {
     getNationalParks();
   } else {
