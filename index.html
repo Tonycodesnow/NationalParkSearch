@@ -24,50 +24,38 @@
     <title>My City</title>
   </head>
   <body>
-    <div class="ui container">
+    <div class="ui container fluid ">
       <!--Search bar-->
       <div class="ui one column stackable grid">
-        <div class="column">
-          <div class="ui fluid action input">
-            <input type="text" placeholder="Search..." id="inputCity" />
-            <button class="ui button" id="buttonSearch">Search</button>
-          </div>
-        </div>
-      </div>
-      <!--Containers Popupaltions and ??-->
-      <div class="ui stackable grid">
-        <div class="four wide column">
-          <div class="ui segment">Content</div>
-        </div>
-        <div class="twelve wide column">
-          <div class="ui segment">Content</div>
-        </div>
-      </div>
-      <!--Container for News-->
-       <div class="ui stackable grid">
-        <div class="one wide column">
-        
-        </div>
-        <div class="fourteen wide column">
-          <div class="ui link cards" id="divNews"></div>
-        </div>
-        <div class="one wide column">
-        
-        </div>
-      </div>
-      <!--Container for National parks-->
-       <div class="ui stackable grid">
-        <div class="three wide column">
-          <div class="ui segment">Content</div>
-        </div>
-        <div class="thirteen wide column">
-      
-
-            <div class="ui special cards" id="divParks">
-
+        <div class="column ui center aligned">
+          <h1 class="ui center aligned huge header">National Parks Search Tool</h1>
+          <div class="ui center aligned">
+            <div class="ui icon input ">
+              <i class="search icon"></i>
+              <input type="text" placeholder="Enter City" id="inputCity" />
             </div>
-
+            <div class="ui right labeled input">
+              <input type="number" placeholder="Distance" id="distance" min="10" />
+              <div class="ui basic label">
+                miles
+              </div>
+            </div>
+            
+           <!-- <button class="ui button" id="buttonSearch">Search</button>-->
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="ui divider"></div>
+        
+      
+    <div class="ui container fluid">
+      <!--Container for National parks-->
+       <div class="ui center aligned">
+            <div class="ui items center aligned" id="divParks">
+              
+            </div>
+          
       </div>
     </div>
 
