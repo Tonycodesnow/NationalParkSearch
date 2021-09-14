@@ -3,6 +3,7 @@ const parksEl = document.getElementById("divParks");
 const inputCity = document.getElementById("inputCity");
 const buttonSearch = document.getElementById("buttonSearch");
 const divNews = document.getElementById("divNews");
+const distanceEl = document.getElementById("distance");
 let cityName = "";
 let cityState = "";
 let cityLat = 0;
@@ -17,7 +18,7 @@ let cityLng = 0;
 //Get News About the City
 
 //TODO: Get National Park List
-function getNationalParks(state) {
+function getNationalParks() {
   const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=x6sAYVvGxVvGZ5T60O2OnqEGdJnsiGuyJBeye1QX`;
   fetch(url)
     .then((response) => response.json())
@@ -66,7 +67,7 @@ function showParks(parks) {
     parks.map((park) => {
            
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
-      if (dist <= 150) {
+      if (dist <= Number(distanceEl.value)) {
         console.log(park)
         const newPark = `
         <div class="ui item">
@@ -151,6 +152,15 @@ function onCityChanged() {
   cityName = place.vicinity;
   cityState = place.address_components[2].short_name;
   
-  getNationalParks(cityState);
+  getNationalParks();
  
 }
+
+distanceEl.addEventListener("blur", () => {
+  if (distanceEl.value && distanceEl.value != "0") {
+    getNationalParks();
+  }
+  else {
+    alert("Please Enter a Valid Distance");
+  }
+});
