@@ -28,37 +28,6 @@ function getNationalParks() {
     });
 }
 
-//Create function for showNews
-function showNews(news) {
-  divNews.innerHTML = "";
-  if (news) {
-    for (let n of news) {
-      const publishedDate = moment(n.publishedAt);
-      const newContent = `
-           <a class="card" href="${n.url}" target="_blank">
-              <div class="image">
-                <img src="${n.urlToImage}" />
-              </div>
-              <div class="content">
-                <div class="header">${n.title}</div>
-                <div class="description">
-                  ${n.description}
-                </div>
-              </div>
-              <div class="extra content">
-                <span class="right floated">${publishedDate.format(
-                  "MM/DD/YYYY"
-                )}</span>
-                <span>
-                  ${n.author}
-                </span>
-              </div>
-            </a>`;
-      divNews.innerHTML += newContent;
-    }
-  }
-}
-
 //TODO:Show Park closed to the City in the State
 function showParks(parks) {
   if (parks) {
@@ -73,7 +42,13 @@ function showParks(parks) {
             <img class="main-image" src="${park.images[0].url}">
           </div>
           <div class="content left aligned">
-            <div class="header">${park.fullName}</div>
+            <div class="header">${park.fullName} 
+              <div id="favorite" class="ui right floated">
+                <i data-name="${
+                  park.fullName
+                }" class="bookmark outline icon"></i>
+              </div>
+            </div>
               <div class="meta">
                 <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${
           park.addresses[0].stateCode
@@ -92,6 +67,7 @@ function showParks(parks) {
           park.activities[1].name
         }</span>
               </div>
+              ${parkImages}
               
           </div>
         </div>
@@ -131,12 +107,6 @@ function distance(lat1, lon1, lat2, lon2, unit) {
   }
 }
 
-//Event Listeners
-//buttonSearch.addEventListener("click", (event) => {
-//  console.log("button Search Click");
-//  getCityNews(cityName);
-//});
-
 //Google Autocomplete API
 let autocomplete;
 
@@ -167,4 +137,9 @@ distanceEl.addEventListener("keypress", () => {
   } else {
     $("#modalDistance").modal("show");
   }
+});
+
+parksEl.addEventListener("click", (event) => {
+  const parkName = event.target.getAttribute("data-name");
+  console.log(parkName);
 });
