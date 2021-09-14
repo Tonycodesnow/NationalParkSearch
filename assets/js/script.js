@@ -23,7 +23,6 @@ function getNationalParks() {
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      
       //show parks
       showParks(response.data);
     });
@@ -63,12 +62,11 @@ function showNews(news) {
 //TODO:Show Park closed to the City in the State
 function showParks(parks) {
   if (parks) {
-    parksEl.innerHTML = ""
+    parksEl.innerHTML = "";
     parks.map((park) => {
-           
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
-        console.log(park)
+        console.log(park);
         const newPark = `
         <div class="ui item">
           <div class="ui large image">
@@ -77,22 +75,30 @@ function showParks(parks) {
           <div class="content left aligned">
             <div class="header">${park.fullName}</div>
               <div class="meta">
-                <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${park.addresses[0].stateCode} <br>${Math.floor(dist)} miles away</span>
+                <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${
+          park.addresses[0].stateCode
+        } <br>${Math.floor(dist)} miles away</span>
               </div>
               <div class="description">
                 <p>${park.description}</p>
               </div>
               <div class="extra">
-                <span>${park.entranceFees[0].cost === "0.00" ? "Free" : "$" + park.entranceFees[0].cost}</span>
-                <span>${park.activities[0].name}, ${park.activities[1].name}</span>
+                <span>${
+                  park.entranceFees[0].cost === "0.00"
+                    ? "Free"
+                    : "$" + park.entranceFees[0].cost
+                }</span>
+                <span>${park.activities[0].name}, ${
+          park.activities[1].name
+        }</span>
               </div>
               
           </div>
         </div>
 
-`
-        parksEl.innerHTML += newPark
-    }
+`;
+        parksEl.innerHTML += newPark;
+      }
     });
   }
 }
@@ -146,21 +152,19 @@ function initAutocomplete() {
 //Get City Weather Information
 function onCityChanged() {
   var place = autocomplete.getPlace();
-    console.log("place from Google API", place);
+  console.log("place from Google API", place);
   cityLat = place.geometry.location.lat();
   cityLng = place.geometry.location.lng();
   cityName = place.vicinity;
   cityState = place.address_components[2].short_name;
-  
+
   getNationalParks();
- 
 }
 
-distanceEl.addEventListener("blur", () => {
+distanceEl.addEventListener("keypress", () => {
   if (distanceEl.value && distanceEl.value != "0") {
     getNationalParks();
-  }
-  else {
-    alert("Please Enter a Valid Distance");
+  } else {
+    $("#modalDistance").modal("show");
   }
 });
