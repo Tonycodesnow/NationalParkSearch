@@ -37,14 +37,17 @@ function showParks(parks) {
            
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
-        console.log(park)
         const newPark = `
         <div class="ui item">
           <div class="ui large image">
             <img class="main-image" src="${park.images[0].url}">
           </div>
           <div class="content left aligned">
-            <div class="header">${park.fullName}</div>
+            <div class="header">${park.fullName} 
+              <div id="favorite">
+                <i data-name="${park.fullName}" class="bookmark outline icon"></i>
+              </div>
+            </div>
               <div class="meta">
                 <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${park.addresses[0].stateCode} <br>${Math.floor(dist)} miles away</span>
               </div>
@@ -110,7 +113,6 @@ function initAutocomplete() {
 //Get City Weather Information
 function onCityChanged() {
   var place = autocomplete.getPlace();
-    console.log("place from Google API", place);
   cityLat = place.geometry.location.lat();
   cityLng = place.geometry.location.lng();
   cityName = place.vicinity;
@@ -118,6 +120,10 @@ function onCityChanged() {
   
   getNationalParks();
  
+}
+
+function savePark() {
+  console.log("park");
 }
 
 distanceEl.addEventListener("blur", () => {
@@ -128,3 +134,8 @@ distanceEl.addEventListener("blur", () => {
     alert("Please Enter a Valid Distance");
   }
 });
+
+parksEl.addEventListener("click", (event) => {
+  const parkName = event.target.getAttribute("data-name");
+  console.log(parkName);
+})
