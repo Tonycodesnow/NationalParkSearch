@@ -77,9 +77,7 @@ function showParks(parks) {
                     ? "Free"
                     : "$" + park.entranceFees[0].cost
                 }</span>
-                <span>${park.activities[0].name}, ${
-          park.activities[1].name
-        }</span>
+                ${parkActivities} 
               </div>
               ${parkImages}
               

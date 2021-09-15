@@ -35,7 +35,10 @@ body>.ui.container {
      max-height: 300px;
      display: none !important;
  }
-
+ .no-show {
+    display:none !important ;
+ }
+ 
  .show-flex{
      display:flex !important ;
  }
