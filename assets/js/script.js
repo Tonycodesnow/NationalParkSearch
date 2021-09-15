@@ -1,96 +1,114 @@
 //Variables
 const parksEl = document.getElementById("divParks");
 const inputCity = document.getElementById("inputCity");
-const buttonSearch = document.getElementById("buttonSearch");
-const divNews = document.getElementById("divNews");
 const distanceEl = document.getElementById("distance");
 const divLoading = document.getElementById("divLoading");
-let cityName = "";
-let cityState = "";
+const favoriteEl = document.getElementById("favorites");
 let cityLat = 0;
 let cityLng = 0;
 let favoriteParks = JSON.parse(localStorage.getItem("favoriteParks")) || [];
 
 //Functions
 
-//Get News About the City
-
 //Get National Park List
-function getNationalParks() {
+function getNationalParks(type) {
   showLoading();
   const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=x6sAYVvGxVvGZ5T60O2OnqEGdJnsiGuyJBeye1QX`;
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
-      //show parks
-      showParks(response.data);
+      //check if type is search or favorites
+      if (type==="search") {
+        showParks(response.data);
+      } else {
+        showFaviorites(response.data);
+      }
     });
 }
 
-//Show Park closed to the City in the State
+function showOnePark(park,dist) {
+   // all images for the park
+   let parkImages = `<div class="ui tiny images">`;
+   for (let i = 0; i < park.images.length; i++) {
+     parkImages += `<a href="${park.images[i].url}" data-lightbox="${park.fullName}"  data-title="${park.images[i].title}">
+                   <img class="ui image Mini" src="${park.images[i].url}" loading="lazy"/>
+                   </a>`;
+   }
+   parkImages += `</div>`;
+
+   //all activities for the park
+   let parkActivities = "<span>";
+   for (let i = 0; i < 5 && i < park.activities.length; i++) {
+     parkActivities += ` ${park.activities[i].name},`;
+   }
+   parkActivities += `</span>`;
+
+   const newPark = `
+   <div class="ui item">
+     <div class="ui large image">
+       <img class="main-image" src="${park.images[0].url}">
+     </div>
+     <div class="content left aligned">
+       <div class="header">${park.fullName} 
+         <div id="favorite" class="ui right floated">
+         ${
+           favoriteParks.find((p) => p === park.fullName)
+             ? `<i data-name="${park.fullName}" class="bookmark icon"></i>`
+             : `<i data-name="${park.fullName}" class="bookmark outline icon"></i>`
+         }
+         
+         
+         </div>
+       </div>
+         <div class="meta">
+            <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${park.addresses[0].stateCode} 
+            <br>
+            ${!dist 
+              ? "" 
+              : Math.floor(dist) + "miles away"
+            }
+            </span>
+         </div>
+         <div class="description">
+           <p>${park.description}</p>
+         </div>
+         <div class="extra">
+           <span>${
+             park.entranceFees[0].cost === "0.00"
+               ? "Free"
+               : "$" + park.entranceFees[0].cost
+           }</span>
+           ${parkActivities} 
+         </div>
+         ${parkImages}
+         
+     </div>
+   </div>
+   <div class="ui divider"></div>
+   `;
+   parksEl.innerHTML += newPark;
+}
+
+//show favorites Parks
+function showFaviorites (parks) {
+  if (parks) {
+    parksEl.innerHTML = "";
+    parks.map((park) => {
+      if (favoriteParks.find((p) => p === park.fullName)) {
+       showOnePark(park,null);
+      }
+    });
+  }
+  hideLoading();
+}
+//Show Parks closed to the City
 function showParks(parks) {
   if (parks) {
     parksEl.innerHTML = "";
     parks.map((park) => {
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
-        // all images for the park
-        let parkImages = `<div class="ui tiny images">`;
-        for (let i = 0; i < park.images.length; i++) {
-          parkImages += `<a href="${park.images[i].url}" data-lightbox="${park.fullName}"  data-title="${park.images[i].title}">
-                        <img class="ui image Mini" src="${park.images[i].url}" loading="lazy"/>
-                        </a>`;
-        }
-        parkImages += `</div>`;
-
-        //all activities for the park
-        let parkActivities = "<span>";
-        for (let i = 0; i < 5 && i < park.activities.length; i++) {
-          console.log(park.activities[i].name);
-          parkActivities += ` ${park.activities[i].name},`;
-        }
-        parkActivities += `</span>`;
-
-        const newPark = `
-        <div class="ui item">
-          <div class="ui large image">
-            <img class="main-image" src="${park.images[0].url}">
-          </div>
-          <div class="content left aligned">
-            <div class="header">${park.fullName} 
-              <div id="favorite" class="ui right floated">
-              ${
-                favoriteParks.find((p) => p === park.fullName)
-                  ? `<i data-name="${park.fullName}" class="bookmark icon"></i>`
-                  : `<i data-name="${park.fullName}" class="bookmark outline icon"></i>`
-              }
-              
-              
-              </div>
-            </div>
-              <div class="meta">
-                <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${
-          park.addresses[0].stateCode
-        } <br>${Math.floor(dist)} miles away</span>
-              </div>
-              <div class="description">
-                <p>${park.description}</p>
-              </div>
-              <div class="extra">
-                <span>${
-                  park.entranceFees[0].cost === "0.00"
-                    ? "Free"
-                    : "$" + park.entranceFees[0].cost
-                }</span>
-                ${parkActivities} 
-              </div>
-              ${parkImages}
-              
-          </div>
-        </div>
-        <div class="ui divider"></div>
-`;
-        parksEl.innerHTML += newPark;
+       showOnePark(park,dist);
       }
     });
   }
@@ -147,21 +165,18 @@ function initAutocomplete() {
   });
   autocomplete.addListener("place_changed", onCityChanged);
 }
-//Get City Weather Information
+//Get City Information
 function onCityChanged() {
   var place = autocomplete.getPlace();
-  console.log("place from Google API", place);
   cityLat = place.geometry.location.lat();
   cityLng = place.geometry.location.lng();
-  cityName = place.vicinity;
-  cityState = place.address_components[2].short_name;
-
-  getNationalParks();
+  
+  getNationalParks("search");
 }
 
 distanceEl.addEventListener("blur", () => {
   if (distanceEl.value && distanceEl.value != "0") {
-    getNationalParks();
+    getNationalParks("search");
   } else {
     $("#modalDistance").modal("show");
   }
@@ -186,3 +201,7 @@ parksEl.addEventListener("click", (event) => {
     }
   }
 });
+
+favoriteEl.addEventListener("click", () => {
+  getNationalParks("favorite");
+})
