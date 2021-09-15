@@ -59,9 +59,13 @@ function showParks(parks) {
           <div class="content left aligned">
             <div class="header">${park.fullName} 
               <div id="favorite" class="ui right floated">
-                <i data-name="${
-                  park.fullName
-                }" class="bookmark outline icon"></i>
+              ${
+                favoriteParks.find((p) => p === park.fullName)
+                  ? `<i data-name="${park.fullName}" class="bookmark icon"></i>`
+                  : `<i data-name="${park.fullName}" class="bookmark outline icon"></i>`
+              }
+              
+              
               </div>
             </div>
               <div class="meta">
@@ -164,10 +168,21 @@ distanceEl.addEventListener("blur", () => {
 });
 
 parksEl.addEventListener("click", (event) => {
-  const parkName = event.target.getAttribute("data-name");
-  console.log(parkName);
-  if (!favoriteParks.find(p => p === parkName)) {
-    favoriteParks.push(parkName);
-    localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));
+  if (
+    event.target.className === "bookmark icon" ||
+    event.target.className === "bookmark outline icon"
+  ) {
+    const parkName = event.target.getAttribute("data-name");
+    if (!favoriteParks.find((p) => p === parkName)) {
+      event.target.classList = "bookmark icon";
+      favoriteParks.push(parkName);
+      localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));
+    } else {
+      //remove from the local storage
+      event.target.classList = "bookmark outline icon";
+      const index = favoriteParks.indexOf(parkName);
+      favoriteParks.splice(index, 1);
+      localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));
+    }
   }
 });
