@@ -88,7 +88,7 @@ function showParks(parks) {
               
           </div>
         </div>
-
+        <div class="ui divider"></div>
 `;
         parksEl.innerHTML += newPark;
       }
