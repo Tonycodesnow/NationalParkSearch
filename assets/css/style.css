@@ -33,4 +33,10 @@ body>.ui.container {
 
  .main-image {
      max-height: 300px;
+     display: none !important;
  }
+
+ .show-flex{
+     display:flex !important ;
+ }
+
