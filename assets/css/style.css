@@ -16,6 +16,10 @@ body {
      text-shadow: 3px 3px 3px rgb(164, 106, 106);
 }
 
+a{
+    color: #5E454B;
+}
+
 .ui.header, .ui {
      color: #5E454B;
  }
@@ -38,6 +42,14 @@ body {
  
  .show-flex{
      display:flex !important ;
+ }
+
+ .btn-direction{
+     margin-top: 10px !important;
+ }
+
+ #titleEl{
+     margin-bottom: 30px;
  }
 
 
