@@ -1,13 +1,11 @@
-body>.ui.container {
-    margin-top: 3em;
- }
 .hero-img {
-    background-image: url(/assets/images/mtn.jpg);
+    background-image: url(../images/mtn.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     padding-bottom: 100px;
+    padding-top: 100px;
 }
 
  body {
@@ -33,7 +31,6 @@ body>.ui.container {
 
  .main-image {
      max-height: 300px;
-     display: none !important;
  }
  .no-show {
     display:none !important ;
