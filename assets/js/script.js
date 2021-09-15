@@ -9,6 +9,7 @@ let cityName = "";
 let cityState = "";
 let cityLat = 0;
 let cityLng = 0;
+let favoriteParks = JSON.parse(localStorage.getItem("favoriteParks")) || [];
 
 //Functions
 
@@ -165,4 +166,8 @@ distanceEl.addEventListener("blur", () => {
 parksEl.addEventListener("click", (event) => {
   const parkName = event.target.getAttribute("data-name");
   console.log(parkName);
+  if (!favoriteParks.find(p => p === parkName)) {
+    favoriteParks.push(parkName);
+    localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));
+  }
 });
