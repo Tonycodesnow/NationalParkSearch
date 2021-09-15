@@ -1,11 +1,24 @@
 body>.ui.container {
     margin-top: 3em;
  }
+.hero-img {
+    background-image: url(/assets/images/mtn.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 100px;
+}
 
  body {
      background-color: #CEE5D0;
  }
- .ui.header, .ui {
+ 
+ h1 {
+     text-shadow: 3px 3px 3px rgb(164, 106, 106);
+}
+
+.ui.header, .ui {
      color: #5E454B;
  }
 
@@ -20,9 +33,6 @@ body>.ui.container {
 
  .main-image {
      max-height: 300px;
- }
-
- .no-show{
      display: none !important;
  }
 
