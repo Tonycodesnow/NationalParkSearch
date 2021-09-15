@@ -40,3 +40,11 @@ body {
      display:flex !important ;
  }
 
+
+ @media only screen and (max-width: 767px) {
+     .ui.items:not(.unstackable)>.item {
+         margin:0 auto !important; 
+     }
+
+ }
+
