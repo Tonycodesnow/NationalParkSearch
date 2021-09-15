@@ -4,6 +4,7 @@ const inputCity = document.getElementById("inputCity");
 const buttonSearch = document.getElementById("buttonSearch");
 const divNews = document.getElementById("divNews");
 const distanceEl = document.getElementById("distance");
+const divLoading = document.getElementById("divLoading");
 let cityName = "";
 let cityState = "";
 let cityLat = 0;
@@ -15,6 +16,7 @@ let cityLng = 0;
 
 //Get National Park List
 function getNationalParks() {
+  showLoading();
   const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=x6sAYVvGxVvGZ5T60O2OnqEGdJnsiGuyJBeye1QX`;
   fetch(url)
     .then((response) => response.json())
@@ -89,6 +91,17 @@ function showParks(parks) {
       }
     });
   }
+  hideLoading();
+}
+
+//TODO: Show Loading div
+function showLoading() {
+  divLoading.classList = "ui active inverted dimmer show-flex";
+}
+
+//TODO: hide Loading div
+function hideLoading() {
+  divLoading.classList = "ui active inverted dimmer no-show";
 }
 
 //Calculate the Distance between to poitn base in coordinates Harvesine Formula geodatasource.com

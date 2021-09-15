@@ -22,3 +22,11 @@ body>.ui.container {
      max-height: 300px;
  }
 
+ .no-show{
+     display: none !important;
+ }
+
+ .show-flex{
+     display:flex !important ;
+ }
+
