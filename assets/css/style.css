@@ -1,0 +1,62 @@
+.hero-img {
+    background-image: url(../images/mtn.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding-bottom: 100px;
+    padding-top: 100px;
+}
+
+body {
+     background-color: #CEE5D0;
+ }
+ 
+ h1 {
+     text-shadow: 3px 3px 3px rgb(164, 106, 106);
+}
+
+a{
+    color: #5E454B;
+}
+
+.ui.header, .ui {
+     color: #5E454B;
+ }
+
+ .ui.items>.item {
+     width: unset;
+     max-width: 85%;
+     flex-direction: row;
+     margin: 10px auto;
+     background-color: #F3F0D7;
+     padding: 0.5em
+ }
+
+ .main-image {
+     max-height: 300px;
+ }
+ .no-show {
+    display:none !important ;
+ }
+ 
+ .show-flex{
+     display:flex !important ;
+ }
+
+ .btn-direction{
+     margin-top: 10px !important;
+ }
+
+ #titleEl{
+     margin-bottom: 30px;
+ }
+
+
+ @media only screen and (max-width: 767px) {
+     .ui.items:not(.unstackable)>.item {
+         margin:0 auto !important; 
+     }
+
+ }
+
