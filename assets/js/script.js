@@ -4,6 +4,7 @@ const inputCity = document.getElementById("inputCity");
 const distanceEl = document.getElementById("distance");
 const divLoading = document.getElementById("divLoading");
 const favoriteEl = document.getElementById("favorites");
+const titleEl = document.getElementById("titleEl");
 let cityLat = 0;
 let cityLng = 0;
 let favoriteParks = JSON.parse(localStorage.getItem("favoriteParks")) || [];
@@ -18,84 +19,93 @@ function getNationalParks(type) {
     .then((response) => response.json())
     .then((response) => {
       //check if type is search or favorites
-      if (type==="search") {
+      if (type === "search") {
+        titleEl.innerText = "PARKS";
         showParks(response.data);
       } else {
         showFaviorites(response.data);
+        titleEl.innerText = "FAVORITES";
       }
     });
 }
 
-function showOnePark(park,dist) {
-   // all images for the park
-   let parkImages = `<div class="ui tiny images">`;
-   for (let i = 0; i < park.images.length; i++) {
-     parkImages += `<a href="${park.images[i].url}" data-lightbox="${park.fullName}"  data-title="${park.images[i].title}">
+function showOnePark(park, dist) {
+  console.log(park);
+  // all images for the park
+  let parkImages = `<div class="ui tiny images">`;
+  for (let i = 0; i < park.images.length; i++) {
+    parkImages += `<a href="${park.images[i].url}" data-lightbox="${park.fullName}"  data-title="${park.images[i].title}">
                    <img class="ui image Mini" src="${park.images[i].url}" loading="lazy"/>
                    </a>`;
-   }
-   parkImages += `</div>`;
+  }
+  parkImages += `</div>`;
 
-   //all activities for the park
-   let parkActivities = "<span>";
-   for (let i = 0; i < 5 && i < park.activities.length; i++) {
-     parkActivities += ` ${park.activities[i].name},`;
-   }
-   parkActivities += `</span>`;
+  //all activities for the park
+  let parkActivities = "<span>";
+  for (let i = 0; i < 5 && i < park.activities.length; i++) {
+    parkActivities += ` ${park.activities[i].name},`;
+  }
+  parkActivities += `</span>`;
 
-   const newPark = `
+  const newPark = `
    <div class="ui item">
      <div class="ui large image">
        <img class="main-image" src="${park.images[0].url}">
      </div>
      <div class="content left aligned">
-       <div class="header">${park.fullName} 
+       <div class="header">
+       <a href="${park.url}" target="_blank">${park.fullName}</a>
          <div id="favorite" class="ui right floated">
          ${
            favoriteParks.find((p) => p === park.fullName)
              ? `<i data-name="${park.fullName}" class="bookmark icon"></i>`
              : `<i data-name="${park.fullName}" class="bookmark outline icon"></i>`
          }
-         
-         
          </div>
        </div>
          <div class="meta">
-            <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${park.addresses[0].stateCode} 
+            <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${
+    park.addresses[0].stateCode
+  } 
             <br>
-            ${!dist 
-              ? "" 
-              : Math.floor(dist) + "miles away"
-            }
+            ${!dist ? "" : Math.floor(dist) + " miles away"}
             </span>
          </div>
          <div class="description">
            <p>${park.description}</p>
          </div>
          <div class="extra">
-           <span>${
+           <span>Entrance Fees: ${
              park.entranceFees[0].cost === "0.00"
                ? "Free"
                : "$" + park.entranceFees[0].cost
            }</span>
-           ${parkActivities} 
+           <br>
+           Activities: ${parkActivities} 
          </div>
+          <a href="${
+            park.directionsUrl
+          }" target="_blank" class="ui brown labeled icon button btn-direction">
+           <i class="location arrow icon"></i>
+            Directions
+        </a>
+         <div class="ui divider"></div>
          ${parkImages}
          
      </div>
    </div>
    <div class="ui divider"></div>
    `;
-   parksEl.innerHTML += newPark;
+  parksEl.innerHTML += newPark;
 }
 
 //show favorites Parks
-function showFaviorites (parks) {
+function showFaviorites(parks) {
   if (parks) {
     parksEl.innerHTML = "";
     parks.map((park) => {
       if (favoriteParks.find((p) => p === park.fullName)) {
-       showOnePark(park,null);
+        showOnePark(park, null);
       }
     });
   }
@@ -108,7 +118,7 @@ function showParks(parks) {
     parks.map((park) => {
       const dist = distance(cityLat, cityLng, park.latitude, park.longitude);
       if (dist <= Number(distanceEl.value)) {
-       showOnePark(park,dist);
+        showOnePark(park, dist);
       }
     });
   }
@@ -170,7 +180,7 @@ function onCityChanged() {
   var place = autocomplete.getPlace();
   cityLat = place.geometry.location.lat();
   cityLng = place.geometry.location.lng();
-  
+
   getNationalParks("search");
 }
 
@@ -204,4 +214,4 @@ parksEl.addEventListener("click", (event) => {
 
 favoriteEl.addEventListener("click", () => {
   getNationalParks("favorite");
-})
+});
