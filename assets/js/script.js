@@ -30,7 +30,6 @@ function getNationalParks(type) {
 }
 
 function showOnePark(park, dist) {
-  console.log(park);
   // all images for the park
   let parkImages = `<div class="ui tiny images">`;
   for (let i = 0; i < park.images.length; i++) {
@@ -45,7 +44,8 @@ function showOnePark(park, dist) {
   for (let i = 0; i < 5 && i < park.activities.length; i++) {
     parkActivities += ` ${park.activities[i].name},`;
   }
-  parkActivities += `</span>`;
+  parkActivities = parkActivities.slice(0, -1);
+  parkActivities += `.</span>`;
 
   const newPark = `
    <div class="ui item">
@@ -55,13 +55,11 @@ function showOnePark(park, dist) {
      <div class="content left aligned">
        <div class="header">
        <a href="${park.url}" target="_blank">${park.fullName}</a>
-         <div id="favorite" class="ui right floated">
          ${
            favoriteParks.find((p) => p === park.fullName)
-             ? `<i data-name="${park.fullName}" class="bookmark icon"></i>`
-             : `<i data-name="${park.fullName}" class="bookmark outline icon"></i>`
+             ? `<i data-name="${park.fullName}" class="bookmark icon show-pointer"></i>`
+             : `<i data-name="${park.fullName}" class="bookmark outline icon show-pointer"></i>`
          }
-         </div>
        </div>
          <div class="meta">
             <span> ${park.addresses[0].line1}, ${park.addresses[0].city} ${
@@ -194,17 +192,17 @@ distanceEl.addEventListener("blur", () => {
 
 parksEl.addEventListener("click", (event) => {
   if (
-    event.target.className === "bookmark icon" ||
-    event.target.className === "bookmark outline icon"
+    event.target.className === "bookmark icon show-pointer" ||
+    event.target.className === "bookmark outline icon show-pointer"
   ) {
     const parkName = event.target.getAttribute("data-name");
     if (!favoriteParks.find((p) => p === parkName)) {
-      event.target.classList = "bookmark icon";
+      event.target.classList = "bookmark icon show-pointer";
       favoriteParks.push(parkName);
       localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));
     } else {
       //remove from the local storage
-      event.target.classList = "bookmark outline icon";
+      event.target.classList = "bookmark outline icon show-pointer";
       const index = favoriteParks.indexOf(parkName);
       favoriteParks.splice(index, 1);
       localStorage.setItem("favoriteParks", JSON.stringify(favoriteParks));

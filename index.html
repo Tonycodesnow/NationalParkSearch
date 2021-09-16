@@ -1,147 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./assets/images/trails.png" />
 
-    <!--cdn Semantic UI-->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
-      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css"
-      integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./assets/css/style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="./assets/images/trails.png" />
 
-    <title>National Parks Search</title>
-  </head>
+  <!--cdn Semantic UI-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+    integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css"
+    integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
 
-  <body>
-    <div class="ui container fluid hero-img">
-      <!--favorite button need to put in the best postion-->
-      <button id="favorites" class="ui labeled icon button">
-        <i class="bookmark icon"></i>
-        Favorites
-      </button>
-      <!--Search bar-->
-      <div class="ui one column stackable grid">
-        <div class="column ui center aligned">
-          <h1 class="ui center aligned huge header">
-            National Parks Search Tool
-          </h1>
-          <div class="ui center aligned">
-            <div class="ui icon input">
-              <i class="search icon"></i>
-              <input type="text" placeholder="Enter City" id="inputCity" />
-            </div>
-            <div class="ui right labeled input">
-              <input
-                type="number"
-                placeholder="Distance"
-                id="distance"
-                min="10"
-                max="500"
-                value="50"
-              />
-              <div class="ui basic label">miles</div>
-            </div>
+  <title>National Parks Search</title>
+</head>
 
-            <!-- <button class="ui button" id="buttonSearch">Search</button>-->
+<body>
+  <div class="ui container fluid hero-img">
+    <!--Search bar-->
+    <div class="ui one column stackable grid">
+      <div class="column ui center aligned">
+        <h1 class="ui center aligned huge header">
+          National Parks Search Tool
+        </h1>
+        <div class="ui center aligned">
+          <div class="ui icon input">
+            <i class="search icon"></i>
+            <input type="text" placeholder="Enter City" id="inputCity" />
+          </div>
+          <div class="ui right labeled input">
+            <input type="number" placeholder="Distance" id="distance" min="10" max="500" value="50" />
+            <div class="ui basic label">miles</div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="ui divider"></div>
-
-    <div class="ui container fluid">
-      <!--Container for National parks-->
-      <div class="ui one column centered grid">
-        <div class="column center aligned">
-          <h1 id="titleEl"></h1>
-
-        </div>
-      </div>
-      <div class="ui center aligned">
-        <div class="ui items center aligned" id="divParks"></div>
-      </div>
-    </div>
-
-    <!--Semantic Loader-->
-    <div class="ui active inverted dimmer no-show" id="divLoading">
-      <div class="ui text loader">Loading</div>
-    </div>
-    <p></p>
-
-    <!--Modal for distance alert-->
-    <div class="ui basic modal" id="modalDistance">
-      <div class="ui icon header">
-        <i class="location arrow icon"></i>
-        Distance Value Incorrect
-      </div>
-      <div class="content">
-        <p></p>
-      </div>
-      <div class="actions">
-        <div class="ui red basic cancel inverted button">
-          <i class="remove icon"></i>
-          Ok
+        <div class="ui center aligned">
+          <!--favorite button need to put in the best postion-->
+          <button id="favorites" class="ui labeled icon button">
+            <i class="bookmark icon"></i>
+            Favorites
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!--CND jQuery-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"
-    ></script>
-    <!--CDN Semantic UI jQuery-->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
-      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
-      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAekD3jUuuHxsJt5oCEP_nX7kS0WVhYeDg&libraries=places&callback=initAutocomplete"
-      async
-      defer
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"
-      integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./assets/js/script.js"></script>
-    <script>
-      $(".special.cards .image").dimmer({
-        on: "hover",
-      });
-    </script>
-  </body>
+  <div class="ui divider"></div>
+
+  <div class="ui container fluid">
+    <!--Container for National parks-->
+    <div class="ui one column centered grid">
+      <div class="column center aligned">
+        <h1 id="titleEl"></h1>
+
+      </div>
+    </div>
+    <div class="ui center aligned">
+      <div class="ui items center aligned" id="divParks"></div>
+    </div>
+  </div>
+
+  <!--Semantic Loader-->
+  <div class="ui active inverted dimmer no-show" id="divLoading">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <p></p>
+
+  <!--Modal for distance alert-->
+  <div class="ui basic modal" id="modalDistance">
+    <div class="ui icon header">
+      <i class="location arrow icon"></i>
+      Distance Value Incorrect
+    </div>
+    <div class="content">
+      <p></p>
+    </div>
+    <div class="actions">
+      <div class="ui red basic cancel inverted button">
+        <i class="remove icon"></i>
+        Ok
+      </div>
+    </div>
+  </div>
+
+  <!--CND jQuery-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <!--CDN Semantic UI jQuery-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+    integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAekD3jUuuHxsJt5oCEP_nX7kS0WVhYeDg&libraries=places&callback=initAutocomplete"
+    async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"
+    integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./assets/js/script.js"></script>
+  <script>
+    $(".special.cards .image").dimmer({
+      on: "hover",
+    });
+  </script>
+</body>
+
 </html>
