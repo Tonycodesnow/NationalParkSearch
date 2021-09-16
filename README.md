@@ -1,18 +1,33 @@
 # Project1
-group project
+National Park Search Tool
 
-Elevator pitch, Day  really enjoy travelling, seeing sights and the beutiful outdoors. So our goal is to have a website that fellow travellers can use on a day trip if your looking for national parks thats clode by or on the way to your next adventure.
+User stories,
+* AS A lover of travel
+* I WANT a tool to let me search for national parks
+* SO THAT I can find my way to adventure near my next travel destination
 
--Concept, We understand that not everyone has time to go all the way to the concierge, or talk to the front desk, or do a deep search on google so we wanted to make it easy for people who travel to get the information they needed. With the simple push of a few buttons.
+Live URL link https://tonycodesnow.github.io/Project1/
 
--Technology used...
+<p align="center"><img src="./assets/images/Live.png" width="70%"></p>
+
 * HTML
 * CSS
 * Jquery
+* Moment.js
 * JavaScript
+* Color Hunt Tools
+* Font Awesome
 * Semantic UI
-* Local-storage Api
+* Local-Storage Api
 * National Parks Api
-* Google prediction Api
+* Google Prediction Api
+* Lightbox Web Api
 
-Our future development ideas are first we would like to turn turn this into a mobile app. We would also like to have a check-in/stickerbadge system for the most adventurous travellers. and a special 
+Elevator pitch, Day really enjoy travelling, seeing sights and the beutiful outdoors. So our goal is to have a website that fellow travellers can use on a day trip if your looking for national parks thats clode by or on the way to your next adventure.
+
+Concept, We understand that not everyone has time to go all the way to the concierge, or talk to the front desk, or do a deep search on google so we wanted to make it easy for people who travel to get the information they needed. With the simple push of a few buttons.
+
+Our future development ideas are first we would like to turn turn this into a mobile app. Extend to state and/or local parks. Enhanced UI experience. We would also like to have a check-in/stickerbadge system for the most adventurous travellers. and a special. search for specfic activities.
+
+
+Created by Sivan, Jose, Gokul, And Antonio
