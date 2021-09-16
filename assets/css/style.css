@@ -21,7 +21,7 @@ a{
 }
 
 .ui.header, .ui {
-     color: #5E454B;
+     color: #F3F0D7;
  }
 
  .ui.items>.item {
@@ -50,6 +50,14 @@ a{
 
  #titleEl{
      margin-bottom: 30px;
+ }
+
+ #favorites{
+     margin-top: 10px;
+ }
+
+ .show-pointer{
+     cursor: pointer;
  }
 
 
