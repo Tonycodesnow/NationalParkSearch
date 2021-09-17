@@ -29,4 +29,4 @@ The Concept, We understand that not everyone has time to go all the way to the c
 Our future development ideas are, first we would like to turn this into a mobile app. Extend to state and/or local parks. A more enhanced UI experience. We would also like to have a check-in/stickerbadge system for the most adventurous travelers. A lot more optoins to search for specfic activities. And theres much more room for even more improvements.
 
 
-Created by Sivan, Jose, Gokul, And Antonio
+Created by Sivan, Jose, Jason, Gokul, And Antonio
