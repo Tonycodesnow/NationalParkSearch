@@ -61,10 +61,13 @@ a{
  }
 
  .footer {
-     text-align: center;
+    text-align: center;
     margin-top: 10px;
  }
 
+ .com-icon {
+    width: 100px;
+ }
  @media only screen and (max-width: 767px) {
      .ui.items:not(.unstackable)>.item {
          margin:0 auto !important; 
