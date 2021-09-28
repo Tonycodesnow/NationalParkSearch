@@ -1,5 +1,5 @@
 # Endless Trails
-National Park Search Tool
+##National Park Search Tool
 
 User stories,
 * AS A lover of travel
@@ -10,7 +10,7 @@ Live URL link https://tonycodesnow.github.io/NationalParkSearch/
 
 <p align="center"><img src="./assets/images/Live.png" width="70%"></p>
 
-Table of Contents </br>
+##Table of Contents </br>
 
 * HTML
 * CSS
