@@ -10,6 +10,8 @@ Live URL link https://tonycodesnow.github.io/NationalParkSearch/
 
 <p align="center"><img src="./assets/images/Live.png" width="70%"></p>
 
+Table of Contents </br>
+
 * HTML
 * CSS
 * Jquery
@@ -21,6 +23,7 @@ Live URL link https://tonycodesnow.github.io/NationalParkSearch/
 * Lightbox Web Api
 * National Parks Api
 * Google Prediction Api
+* https://www.freelogodesign.org/
 
 The Elevator pitch, Do you really enjoy traveling, seeing sights and the beutiful outdoors. So our goal is to have a website that fellow travelers can use on a day trip (or longer) if your is looking for national parks thats close by or on the way to your next adventure.
 
