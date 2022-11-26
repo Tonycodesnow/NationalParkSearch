@@ -14,7 +14,7 @@ let favoriteParks = JSON.parse(localStorage.getItem("favoriteParks")) || [];
 //Get National Park List
 function getNationalParks(type) {
   showLoading();
-  const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=x6sAYVvGxVvGZ5T60O2OnqEGdJnsiGuyJBeye1QX`;
+  const url = `https://developer.nps.gov/api/v1/parks?limit=465V&api_key=kuCZVWRm8em4BcqyBS4cq7peZ0rL2sa4caN49NGj`;
   fetch(url)
     .then((response) => response.json())
     .then((response) => {
